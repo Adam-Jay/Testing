@@ -1,4 +1,2 @@
 # Testing: master
-This is for tinkering around!
-
-I'm not 100% sure what I'm going to do here :D 
+This is my page where I do my tinkering around!
