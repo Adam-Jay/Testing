@@ -21,7 +21,7 @@ float_variable = 3.14 	#Decimal number
 boolean_variable = True	#True or False
 string_variable = "Hi!"	#Sequence of characters
 
-del var  				#Deletes the variable (it will cease to exist and you cannot reference it anymore)
+del var2  				#Deletes the variable (it will cease to exist and you cannot reference it anymore)
 print(integer_variable)	#When you reference a variable, it returns the value stored in it.
 
 #-----------#
@@ -120,8 +120,220 @@ random.random()				#Outputs a float between 0 and 1 (MANY decimal places)
 random.randrange(3, 100)	#Gets a random integer >= 3 and < 100
 random.randint(3, 100)		#Same as above but inclusive (can = 100)
 
+#--------------#
+#--Comparison--#
+#--------------#
+5 == 5 	#Equals
+4 != 5 	#Does not equal
+3 > 2	#Greater than
+3 >= 3 	#Greater than or equal to
+2 < 3 	#Less than
+3 <= 3 	#Less than or equal
+
+#Not just numbers can be compared... strings can be compared lexicographically
+"a" < "b"
+"Zebra" < "Zylophone"
+"Tim" < "Timothy"
+
+#--------------#
+#--Conditions--#
+#--------------#
+condition = False
+
+'''Evaluates the condition(s) of the statement, and IF it's true, then it executes the conditional code.
+If it's not true, then it ignores the indented code.'''
+if condition == True:
+	print("The condition is true!")
+
+#Else statements execute if the first statement was not true
+if 1 > 2:
+	print("1 is greater than two! \n")
+else:
+	print("1 is not greater than two! \n")
+
+'''Nested statements. The output of this code is actually 3, not seven, since once the "var < 5"
+condition is not met, it stops everything past it, EVEN IF it would be true.'''
+var = 7
+if var > 3:
+   print("var > 3")
+   if var < 5:
+      print("var < 5")
+      if var == 7:
+         print("var == 7")
+
+'''Elif (short for else if) statements are evaluated if the original if statement wasn't true.
+The else is executed if none of the above statements are true.'''
+if var == 3:
+	print("var is 3 \n")
+elif var == 7:
+	print("var is 7 \n")
+else:
+	print("var isn't 3 or 7 \n")
+
+#Remember that if the original if is true, the elif isn't executed even if it's true also!
+if 1 == 1:
+	print("One equals one. \n")
+elif 2 == 2:
+	print("Two equals two. \n")
+
+#---------------------#
+#--Boolean Operators--#
+#---------------------#
+#Only outputs true if BOTH inputs are true
+if 1 == 1 and 2 == 2:
+	print(True)
+
+#Outputs if at least one is true
+if 1 == 1 or 2 == 3:
+	print(True)
+
+#Outputs if the input is false
+if not 1 == 5:
+	print(True)
+
+'''Note: The moment that the computer comes across something that can confirm an output, the rest after it
+can and will be ignored. For example, if the first input into the OR is true, the whole thing is
+automatically true without the rest even needing to be evaluated. The opposite is true for AND. If the
+first condition is false, the whole thing is false without taking anything else into consideration.
+This type of decision-making is called short-circuit evaluation.'''
+
+#Operator precedence: which operators python evaluates first
+False == False or True
+	#True
+False == (False or True)
+	#False
+(False == False) or True
+	#True
+
+#Math is done before the comparison.
+2 + 3 == 5
+
+'''Since this can often become very complicated, use parentheses even if they're not strictly neccesary!
+1. First step is PEMDAS. Exponents, division, etc. are solved first.
+2. Comparisons (ex. <=), then equalites (==), are then evaluated.
+3. Afterwards, the logical operators are used. They DO NOT go from left to right like you might think.
+   NOT is done first, then AND, then OR.'''
+
+print("The output is " + str(True and not False))		#Outputs True
+							#True and(not False)
+
+print("The output is " + str(False or True and False))	#Outputs False
+							#False or(True and False)
+print("")
+
+#---------#
+#--Loops--#
+#---------#
+#The while loop is like an if, but can occur (iterate) many times. It continues as long as it's true.
+i = 1			#The variable "i" is set as the loop counter variable and is incremented at each iteration.
+while i < 5:	#It prints the number on each repetition, NOT including 5. Once it's no longer less than 5,
+	print(i)	#it stops.
+	i += 1
+
+#Infinite loops always remain true (but can lead to freezing since they never end)
+#while True:
+#	print("INFINITE")
+
+#The break statement terminates a loop immediately.
+while True:
+	break
+	print("This is some text!")
+
+#How many times does this loop print? (Answer: 3)
+i = 5
+while True:
+  print(i)
+  i = i - 1
+  if i <= 2:
+    break
+
+#The continue statement restarts the loop
+while i > 0:
+	i -= 1
+	print("Hello")
+	continue
+	print("Hi")
+
+#-------------------#
+#--Lists--(Arrays)--#
+#-------------------#
+#Create an indexed list of items which can be accessed using the name of the list and the index in brackets
+to_do = ["Study", "Read", "Brush teeth"]
+print(to_do[1])
+
+#You can even print the entire array at once!
+print(to_do)
+
+#You can initialize a list with nothing in it with empty square brackets:
+empty_list = []
+
+#You can fill lists with lots of data types, including nested lists!
+new_list = ["string", 5.3, 2, False, [0, 1, 2, 3]]
+print(new_list[4][3])
+
+#Strings can even be indexed like lists!
+string_variable[2]
+
+#Reassigning a value in a list
+new_list[2] = 50
+
+#Accessing multiple vales of lists or strings
+new_list[1:3]
+"Hello World"[4]
+
+#You can even concatenate and multiply lists like strings!
+new_list = new_list + ["Other", "Stuff"]
+new_list = new_list * 2
+
+#"in" checks if something is in a list or string.
+5.15 in new_list
+"Hello" in "Hello, World!"
+
+another_list = ["Hello", "darkness my old friend", ["item1", "item2"]]
+"darkness" in another_list		#False: it expects to find an index with EXACTLY this as its value
+"darkness" in another_list[1]	#True: tells it to specifically look into this index for the substring
+"item1" in another_list			#False: does not search inside nested lists
+"item1" in another_list[2]		#True
+
+#To check if it's not in a list, you can do it two ways
+"foo" not in new_list
+not("foo" in new_list)
+
+#Editing a list
+numbers = [1, 2, 3]
+numbers.append(4)		#Only one at a time
+numbers += [5, 6]		#Multiple at a time
+numbers.insert(3, 3.5)	#Inserts value at the given index
+
+numbers.remove(3.5)		#Removes the index containing the first occurence of this value in the list
+numbers.pop()			#Remove and return the value of the given index (last index by default)
+del numbers[4]			#Removes the given index
+
+#More things to do with lists
+len(new_list)					#Finds the legnth of the list
+new_list.index("Stuff")			#Returns the index of the first occurence of the value "Stuff"
+"Hello World".index("o", 5)		#Can also set where to look / start looking
+new_list.count("String")		#Finds how many indexes are that value
+
+#Note that you can't compare numbers to strings or it will produce an error
+max(numbers)		#Gives the max (highest number or last in the alphabet)
+min(numbers)		#Gives the min (lowest number or first in the alphabet)
+numbers.sort()		#Sorts the list
+numbers.reverse()	#Reverses the list
+
+new_list.clear()	#Empties out the list
+
+#---------#
+#--Range--#
+#---------#
+#Creates a list with values starting with 10 and ending with (BUT not including) 13 with an increment of 1
+range_list = list(range(10, 13, 1))
+print(range_list)
+
+range(5)	#Creates a range of all integers starting at zero and ending at (NOT including) 5
+
 #---------#
 #--Input--#
 #---------#
-user_input = input("What's your name? ")	#Asks for information from the user with the given prompt
+user_input = input("\nWhat's your name? ")	#Asks for information from the user with the given prompt
 print("Hello,", user_input, "!")			#Outputs the information the user gave
